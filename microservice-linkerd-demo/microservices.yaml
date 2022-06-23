@@ -154,7 +154,7 @@ status:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shipping
@@ -166,13 +166,18 @@ spec:
   - http:
       paths:
       - path: /shipping
+        pathType: Prefix
         backend:
-          serviceName: shipping
-          servicePort: 80
+          service:
+            name: shipping
+            port:
+              number: 80
+#          serviceName: shipping
+#          servicePort: 80
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: invoicing
@@ -184,13 +189,18 @@ spec:
   - http:
       paths:
       - path: /invoicing
+        pathType: Prefix
         backend:
-          serviceName: invoicing
-          servicePort: 80
+          service:
+            name: invoicing
+            port:
+              number: 80
+#          serviceName: invoicing
+#          servicePort: 80
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: order
@@ -202,6 +212,11 @@ spec:
   - http:
       paths:
       - path: /order
+        pathType: Prefix
         backend:
-          serviceName: order
-          servicePort: 80
+          service:
+            name: order
+            port:
+              number: 80
+#          serviceName: order
+#          servicePort: 80
